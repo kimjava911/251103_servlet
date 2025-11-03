@@ -38,8 +38,20 @@ public class FirstServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         writer.println("<h1>제 첫 서블릿입니다!</h1>");
         writer.println("<p>귀엽죠?</p>");
+        String textParam = req.getParameter("text");
+        System.out.println(textParam);
+        if (textParam != null) { // 아예 입력이 안되어 있으면 Null, 빈값이 들어가 있으면 "".
+            writer.println("<code>%s</code>".formatted(textParam));
+        }
+        // GET
+        writer.println("<form method='get'>");
+        writer.println("<input name='text' placeholder='아무거나 입력해보세요'>");
+        writer.println("<button>GET 요청</button>");
+        writer.println("</form>");
+        // POST
         writer.println("<form method='post'>");
         writer.println("<button>POST 요청</button>");
+        writer.println("<input name='text' placeholder='아무거나 입력해보세요'>");
         writer.println("</form>");
         System.out.println("First Servlet이 GET 요청 처리 종료");
         // service로 돌아감
@@ -51,7 +63,10 @@ public class FirstServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.println("<h1>POST 요청을 보내셨네요</h1>");
-        writer.println("<p>왜죠?</p>");
+        String textParam = req.getParameter("text");
+        System.out.println(textParam);
+//        writer.println("<p>왜죠?</p>");
+        writer.println("<p>%s</p>".formatted(textParam == null || textParam.isBlank() ? "왜죠? (default)" : textParam));
         System.out.println("First Servlet이 POST 요청 처리 종료");
         // service로 돌아감
     }
