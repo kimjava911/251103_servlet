@@ -6,5 +6,8 @@
 <body>
     <h1>첫 JSP임다</h1>
     <p>예쁘게 봐주세요</p>
+    <p>
+        <% response.getWriter().println(request.getAttribute("name")); %>
+    </p>
 </body>
 </html>

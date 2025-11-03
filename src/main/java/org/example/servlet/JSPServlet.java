@@ -18,6 +18,7 @@ public class JSPServlet extends HttpServlet {
         // first.jsp <- 파일로 들어오면 해당 작업 무시.
         // 직접 접근을 허용하는 것이 보안적으로 좋지 X <- jsp 보안적으로 처리하려고 하면 필연적으로 코드가 더러워짐.
         // webapp -> jsp
+        req.setAttribute("name", "김자바"); // 값 설정을 가정
         req.getRequestDispatcher("/first.jsp").forward(req, resp);
     }
 }
